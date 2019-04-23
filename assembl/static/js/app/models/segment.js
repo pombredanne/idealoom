@@ -40,6 +40,7 @@ class SegmentModel extends Base.Model.extend({
     created: null,
     idCreator: null,
     important: false,
+    external_url: null,
     ranges: [],
     target: null
   }

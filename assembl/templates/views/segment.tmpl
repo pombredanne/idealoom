@@ -57,9 +57,14 @@ data-segmentid="<%= segment.cid %>">
         <div class="js_authorName authorName"></div>
 
       <% } else { %>
-        <% if (type == "Webpage") { %>
+        <% if (type == "Webpage") {
+          var external_url = segment.get("external_url"); %>
           <img src="{{ STATIC_URL }}/img/icon/search_document.svg" width="35" height="35" class="image-rounded fl prxs" alt="{{ gettext('Document extracted from the web') }}" />
-          {{ gettext('Harvested from webpage') }}
+          <% if (external_url) { %>
+            <a href="<%= external_url %>" target="_blank">{{ gettext('Harvested from webpage') }}</a>
+          <% } else { %>
+            {{ gettext('Harvested from webpage') }}
+          <% } %>
         <% } else { %>
           {{ gettext('Unknown segment type: ') }}<%= type %>
         <% } %>
